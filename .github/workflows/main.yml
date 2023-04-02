@@ -18,10 +18,8 @@ jobs:
       with:
         msbuild-architecture: x86
       
-    - name: msbuild
-      run: |
-        cd build
-        msbuild BVE_ATSPITemp.sln -p:Platform="${{ matrix.arch }}" -p:Configuration=Release -m
+    - name: run msbuild
+      run: msbuild BVE_ATSPITemp.sln -p:Platform="${{ matrix.arch }}" -p:Configuration=Release -m
       
     - name: check dir
       run: |
