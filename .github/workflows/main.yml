@@ -1,0 +1,37 @@
+name: windows-build
+
+on: [push]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        arch: ["x64", "Win32"]
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+        
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+      with:
+        msbuild-architecture: x86
+      
+    - name: msbuild
+      run: |
+        cd build
+        msbuild BVE_ATSPITemp.sln -p:Platform="${{ matrix.arch }}" -p:Configuration=Release -m
+      
+    - name: check dir
+      run: |
+        tree
+
+    - name: collect staging built files
+      run: mv build/Release/atsplugin.dll atsplugin_${{ matrix.arch }}.dll
+
+    - name: upload built files
+      uses: actions/upload-artifact@v3
+      with:
+        name: built
+        path: atsplugin_${{ matrix.arch }}.dll
