@@ -3,7 +3,7 @@ name: windows-build
 on: [push]
 
 env:
-  cpp: "*/*.vcxproj"
+  cpp: "PITemp/PITemp.vcxproj"
   cs: ./*/*.csproj
   dir: .
 
