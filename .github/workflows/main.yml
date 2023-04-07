@@ -4,7 +4,7 @@ on: [push]
 
 env:
   cpp: ./PITemp/*.vcxproj
-  cs: ./PITempCS/*.vcxproj
+  cs: ./PITempCS/*.csproj
   dir: .
 
 jobs:
