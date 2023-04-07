@@ -3,8 +3,8 @@ name: windows-build
 on: [push]
 
 env:
-  cpp: ./PITemp/*.vcxproj
-  cs: ./PITempCS/*.csproj
+  cpp: "*/*.vcxproj"
+  cs: ./*/*.csproj
   dir: .
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.1
     
     - name: run msbuild
-      run: msbuild ./PITemp/*.vcxproj -p:Platform="${{ matrix.arch }}" -p:Configuration=Release -m
+      run: msbuild ${{ env.cpp }} -p:Platform="${{ matrix.arch }}" -p:Configuration=Release -m
       
     - name: check dir
       run: |
