@@ -27,10 +27,10 @@ jobs:
     - name: check dir
       run: |
         tree
-        dir PITemp/Release
+        dir PITemp/Release/build/
 
     - name: collect staging built files
-      run: mv PITemp/Release/build/atsplugin.dll atsplugin_${{ matrix.arch }}.dll
+      run: mv PITemp/Release/atsplugin.dll atsplugin_${{ matrix.arch }}.dll
 
     - name: upload built files
       uses: actions/upload-artifact@v3
