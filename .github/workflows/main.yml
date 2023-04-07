@@ -3,8 +3,8 @@ name: windows-build
 on: [push]
 
 env:
-  cs: "PITemp/*.vcxproj"
-  cpp: "PITempCS/*.vcxproj"
+  cs: ./PITemp/*.vcxproj
+  cpp: ./PITempCS/*.vcxproj
   dir: .
 
 jobs:
