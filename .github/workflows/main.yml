@@ -19,7 +19,7 @@ jobs:
         msbuild-architecture: x86
       
     - name: get DllExport
-      run: bitsadmin /transfer download https://github.com/3F/DllExport/releases/download/v1.7.4/DllExport.bat %CD%
+      run: bitsadmin /transfer download https://github.com/3F/DllExport/releases/download/v1.7.4/DllExport.bat %CD%/
     
     - name: run msbuild
       run: msbuild BVE_ATSPITemp.sln -p:Platform="${{ matrix.arch }}" -p:Configuration=Release -m
