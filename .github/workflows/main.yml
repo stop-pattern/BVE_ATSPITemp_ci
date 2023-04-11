@@ -66,7 +66,7 @@ jobs:
         tree
 
     - name: collect staging built files
-      run: mv build/Release/atsplugin.dll atsplugin_${{ matrix.arch }}.dll
+      run: mv PITempCS/bin/Release/${{ matrix.arch }}/PITempCS.dll atsplugin_${{ matrix.arch }}.dll
 
     - name: upload built files
       uses: actions/upload-artifact@v3
