@@ -56,7 +56,7 @@ jobs:
     - name: setup DllExport
       run: |
         Start-BitsTransfer -Source https://github.com/3F/DllExport/releases/download/v1.7.4/DllExport.bat
-        ./DllExport -action Export 
+        ./DllExport -action Update
     
     - name: run msbuild
       run: msbuild BVE_ATSPITemp.sln -p:Platform="${{ matrix.arch }}" -p:Configuration=Release -m
