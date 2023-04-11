@@ -23,20 +23,15 @@ jobs:
     
     - name: run msbuild
       run: msbuild ${{ env.cpp }} -p:Platform="${{ matrix.arch }}" -p:Configuration=Release -m
-      
-    - name: check dir
-      run: |
-        tree
-        dir PITemp/Release/build/
 
     - name: collect staging built files
-      run: mv PITemp/Release/PITemp.dll atsplugin_${{ matrix.arch }}.dll
+      run: mv PITemp/Release/PITemp.dll PITemp_${{ matrix.arch }}.dll
 
     - name: upload built files
       uses: actions/upload-artifact@v3
       with:
         name: built
-        path: atsplugin_${{ matrix.arch }}.dll
+        path: PITemp_${{ matrix.arch }}.dll
 
   cs:
     strategy:
@@ -50,8 +45,6 @@ jobs:
         
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.1
-      with:
-        msbuild-architecture: x86
       
     - name: setup DllExport
       run: |
@@ -60,16 +53,12 @@ jobs:
     
     - name: run msbuild
       run: msbuild BVE_ATSPITemp.sln -p:Platform="${{ matrix.arch }}" -p:Configuration=Release -m
-      
-    - name: check dir
-      run: |
-        tree
 
     - name: collect staging built files
-      run: mv PITempCS/bin/Release/${{ matrix.arch }}/PITempCS.dll atsplugin_${{ matrix.arch }}.dll
+      run: mv PITempCS/bin/Release/${{ matrix.arch }}/PITempCS.dll PITempCS_${{ matrix.arch }}.dll
 
     - name: upload built files
       uses: actions/upload-artifact@v3
       with:
         name: built
-        path: atsplugin_${{ matrix.arch }}.dll
+        path: PITempCS_${{ matrix.arch }}.dll
